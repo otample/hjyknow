@@ -5,7 +5,11 @@
     'use strict';//申明自适应
     angular.module('whohu',['ui.router'])//将某块配置到目标文件中
 
-        .config(function($interpolateProvider,
+        .config([
+            '$interpolateProvider',
+            '$stateProvider',
+            '$urlRouterProvider'
+            ,function($interpolateProvider,
                          $stateProvider,
                          $urlRouterProvider){
             $interpolateProvider.startSymbol('<[:');//定义angular的左边界符
@@ -22,7 +26,25 @@
                     url:'/login',
                     templateUrl:'login.tpl',
                 })
-         })
+                .state('signup',{
+                    url:'/signup',
+                    templateUrl:'signup.tpl',
+                })
+         }])
 
+        .service('UserService',[
+            function(){
+                var signinfo = this;
+                signinfo.signup_data = {};
+                signinfo.signup = function(){
+                    console.log(signinfo.signup_data);
+                }
+        }])
 
+        .controller('SignupController',[
+            '$scope',
+            'UserService',
+            function($scope,UserService){
+            $scope.User = UserService;
+        }])
 })();

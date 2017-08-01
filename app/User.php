@@ -158,7 +158,7 @@ class User extends Model
         $user_info->password = Hash::make($new_password);
         if( $user_info->save() ){
             $this->logout();
-            return ['status'=>4,'msg'=>'your password has changed , place relogin !'];
+            return ['status'=>4,'msg'=>'your password has changed , please relogin !'];
         }
         return ['status'=>5,'msg'=>'change password fail!'];
     }
@@ -179,7 +179,7 @@ class User extends Model
         $new_name = myrq('nn');
         $new_email = myrq('ne');
         if(!$new_name && !$new_email){
-            return ['status'=>1,'msg'=>'place choose witch information that you need to change!'];
+            return ['status'=>1,'msg'=>'please choose witch information that you need to change!'];
         }
         //获取用户信息
         $user_info = $this->find($uid);

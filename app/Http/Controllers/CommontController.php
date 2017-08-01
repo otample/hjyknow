@@ -26,7 +26,7 @@ class CommontController extends Controller
             ->skip($skip)
             ->orderBy('created_at','desc')
             ->get();
-
+//    dd($answers);
         //合并数据(必须是两条数据表有外键?)
 
         $data = $questions->merge($answers);
